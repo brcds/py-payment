@@ -11,7 +11,7 @@
             rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }} "/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"/>
 
     <title>Pagamento</title>
 </head>
@@ -66,6 +66,10 @@
     var socket = io.connect('{{host}}');
     socket.on('connect', function () {
         console.log('websocket connected to server')
+    });
+    socket.on('payment-confirmed-{{payment_id}}', function () {
+        console.log('pagamento confirmado');
+        location.reload();
     })
 </script>
 </html>
